@@ -6,7 +6,7 @@ Docker Hub: [4nxio/ansible][1]
 ## Usage
 You should changed your directory to your Ansible files (e.g. ~/ansible) and then run:
 ```
-docker run -it -v $(pwd):/etc/ansible --rm=true biotecs/ansible ansible --help
+docker run -it -v $(pwd):/etc/ansible --rm=true 4nxio/ansible-docker ansible --help
 
 ```
 It is recommended to use ansible specific SSH keys. So create and add them ssh-agent to be able to use encrypted private keys: 
@@ -14,7 +14,7 @@ It is recommended to use ansible specific SSH keys. So create and add them ssh-a
 mkdir -p /home/foo/ansible/keys
 ssh-keygen -t ed25519
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/home/foo/.ssh/id_ed25519): /home/foo/ansible/keys
+Enter file in which to save the key (/home/foo/.ssh/id_ed25519): /home/foo/ansible/keys/ansible_key
 The key fingerprint is:
 SHA256:Bhh1IfDWIin4PNLiEcWHtcvrSb05EXdY1MVn4yMokcE foo@bar
 The key's randomart image is:
@@ -38,7 +38,7 @@ Identity added: /home/foo/ansible/keys/ansible_key (foo@bar)
 ```
 Use the ssh-agent auth socket file and forward it to the docker image start:
 ```
-docker run -it -v $SSH_AUTH_SOCK:/tmp/ssh.sck -e SSH_AUTH_SOCK=/tmp/ssh.sck -v /home/foo/ansible:/etc/ansible --rm=true biotecs/ansible ansible localhost -m ping
+docker run -it -v $SSH_AUTH_SOCK:/tmp/ssh.sck -e SSH_AUTH_SOCK=/tmp/ssh.sck -v /home/foo/ansible:/etc/ansible --rm=true 4nxio/ansible-docker ansible localhost -m ping
 ```
 
 ## License
