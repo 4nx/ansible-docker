@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.10.1
 MAINTAINER Simon Krenz <sk@4nx.io>
 
 LABEL Description="ansible-docker container for cli interaction"
